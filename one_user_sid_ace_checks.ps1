@@ -11,7 +11,7 @@ Notes:
 
 param(
     [string]$TargetDomain = "thinenv.gc",
-    [string]$TargetUserSam = "user1",
+    [string]$TargetUserSam = "user2",
     [string]$DC = "",        # optional: fqdn of a domain controller (LDAP server)
     [switch]$DryRun
 )
@@ -36,7 +36,10 @@ function Show-ACL {
     }
     Write-Host "=== end ACL ===`n"
 }
+$users = 26..250 | ForEach-Object { "user$_" }
 
+
+foreach ($TargetUserSam in $users) {
 try {
     # find user (optionally using specified DC)
     if ($DC -ne "") {
@@ -114,7 +117,7 @@ try {
     Write-Error "Виникла помилка: $_"
     exit 2
 }
-
+}
 # --- Поради якщо ACE не знайдено ---
 Write-Host "`n=== Поради для діагностики (якщо ACE не знайдено) ===" -ForegroundColor Cyan
 Write-Host "1) Перевір права облікового запису, під яким ви запускаєте скрипт — потрібні права на зміну ACL (Domain Admin або делеговані права на зміну DACL)." 

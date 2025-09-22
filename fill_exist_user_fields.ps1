@@ -9,7 +9,7 @@ Import-Module ActiveDirectory
 function Generate-LargeRandomText {
     param(
         [int]$Length,
-        [string]$CharSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,-_()[]{}:;!?@#$%^&*+=|\/~`'"""
+        [string]$CharSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
     )
     
     $result = New-Object System.Text.StringBuilder
